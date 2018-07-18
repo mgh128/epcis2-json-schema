@@ -1,0 +1,152 @@
+﻿{
+  "$id": "https://id.gs1.org/epcis-schema.json",
+  "type": "object",
+  "definitions": {
+    "Time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "EventID": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^urn:uuid:[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+     },
+    "ErrorDeclaration": {
+      "type": "object",
+      "properties": {
+        "declarationTime": { "$ref": "#/definitions/Time" },
+        "reason": { "$ref": "#/definitions/Uri" },
+        "correctiveEventIds": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/EventID" }
+        }
+      }
+    },
+    "Uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "epc": { "$ref": "#/definitions/Uri" },
+    "action": {
+      "type": "string",
+      "enum": [
+        "OBSERVE",
+        "ADD",
+        "DELETE"
+      ]
+    },
+    "epcList": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/epc" }
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "eventTime": {
+          "title": "Event Time",
+          "description": "Time of when the Event took place.",
+          "$ref": "#/definitions/Time"
+        },
+        "recordTime": {
+          "title": "Record Time",
+          "description": "Time of when the Event was stored.",
+          "$ref": "#/definitions/Time" 
+        },
+        "eventTimeZoneOffset": {
+          "type": "string",
+          "pattern": "^(\\+|\\-)((0[0-9]|1[0-3]):([0-5][0-9])|14:00)$"
+        },
+        "eventId": { "$ref": "#/definitions/EventID" }
+      }
+    },
+    "objectEvent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/event"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "isA": {
+              "type": "string",
+              "pattern": "^ObjectEvent$"
+            },
+            "action": { "$ref": "#/definitions/action" },
+            "epcList": { "$ref": "#/definitions/epcList" },
+            "bizStep": { "$ref": "#/definitions/Uri" },
+            "disposition": { "$ref": "#/definitions/Uri" },
+            "readPoint": { "$ref": "#/definitions/Uri" },
+            "bizLocation": { "$ref": "#/definitions/Uri" }
+          },
+          "required": [
+            "epcList"
+          ]
+        }
+      ]
+    },
+    "aggregationEvent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/event"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "isA": {
+              "type": "string",
+              "pattern": "^AggregationEvent$"
+            },
+            "parentID": { "$ref": "#/definitions/Uri" },
+            "childEPCs": { "$ref": "#/definitions/epcList" },
+            "action": { "$ref": "#/definitions/action" },
+            "bizStep": { "$ref": "#/definitions/Uri" },
+            "disposition": { "$ref": "#/definitions/Uri" },
+            "readPoint": { "$ref": "#/definitions/Uri" },
+            "bizLocation": { "$ref": "#/definitions/Uri" }
+          },
+          "required": [
+            "childEPCs"
+          ]
+        }
+      ]
+    }
+  },
+  "properties": {
+    "@context": {
+      "type": "string"
+    },
+    "isA": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "title": "Schema Version",
+      "description": "The version of the EPCIS Schema being used.",
+      "type": "string"
+    },
+    "creationDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "format": {
+      "type": "string"
+    },
+    "epcisBody": {
+      "type": "object",
+      "properties": {
+        "eventList": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/objectEvent"
+              },
+              {
+                "$ref": "#/definitions/aggregationEvent"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
