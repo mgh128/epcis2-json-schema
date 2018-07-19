@@ -25,6 +25,7 @@
     <Folder Include="ShouldValidate\" />
     <Folder Include="Patterns\" />
     <Folder Include="Required\" />
+    <Folder Include="AnyOfEpcQuantity\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="ShouldValidate\Test1.json">
@@ -61,6 +62,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Required\FailEventTimeZoneOffset.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AnyOfEpcQuantity\ObjectEventPassEpcList.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AnyOfEpcQuantity\ObjectEventPassQuantityList.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AnyOfEpcQuantity\ObjectEventPassBoth.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AnyOfEpcQuantity\ObjectEventFailNone.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

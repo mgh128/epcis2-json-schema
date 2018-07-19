@@ -115,14 +115,6 @@
               "type": "string",
               "pattern": "^ObjectEvent$"
             },
-            "epcList": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/epc" }
-            },
-            "quantityList": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/quantityElement" }
-            },
             "action": { "$ref": "#/definitions/action" },
             "bizStep": { "$ref": "#/definitions/uri" },
             "disposition": { "$ref": "#/definitions/uri" },
@@ -143,7 +135,31 @@
             "ilmd": { "$ref": "#/definitions/ilmd" }
           },
           "required": [ "isA", "action" ]
-        }
+        },
+        {
+          "anyOf" : [
+            {
+              "type": "object",
+              "properties": {
+                "epcList": {
+                  "type": "array",
+                  "items": { "$ref": "#/definitions/epc" }
+                }
+              },
+              "required": [ "epcList" ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "quantityList": {
+                  "type": "array",
+                  "items": { "$ref": "#/definitions/quantityElement" }
+                }
+              },
+              "required": [ "quantityList" ]
+            }
+          ]
+        }  
       ]
     },
     "aggregationEvent": {
