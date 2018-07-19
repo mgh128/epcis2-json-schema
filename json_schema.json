@@ -27,6 +27,16 @@
         "DELETE"
       ]
     },
+    "epcList": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/epc" },
+      "minItems": 1      
+    },
+    "quantityList": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/quantityElement" },
+      "minItems": 1
+    },
     "uom": {
       "type": "string",
       "pattern": "^[A-Z0-9]{2,3}$"
@@ -144,22 +154,14 @@
             {
               "type": "object",
               "properties": {
-                "epcList": {
-                  "type": "array",
-                  "items": { "$ref": "#/definitions/epc" },
-                  "minItems": 1
-                }
+                "epcList": { "$ref": "#/definitions/epcList" }
               },
               "required": [ "epcList" ]
             },
             {
               "type": "object",
               "properties": {
-                "quantityList": {
-                  "type": "array",
-                  "items": { "$ref": "#/definitions/quantityElement" },
-                  "minItems": 1
-                }
+                "quantityList": { "$ref" : "#/definitions/quantityList" }
               },
               "required": [ "quantityList" ]
             }
@@ -180,16 +182,8 @@
               "pattern": "^AggregationEvent$"
             },
             "parentID": { "$ref": "#/definitions/uri" },
-            "childEPCs": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/epc" },
-              "minItems": 1
-            },
-            "childQuantityList": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/quantityElement" },
-              "minItems": 1
-            },
+            "childEPCs": { "$ref": "#/definitions/epcList" },
+            "childQuantityList": { "$ref": "#/definitions/quantityList" },
             "action": { "$ref": "#/definitions/action" },
             "bizStep": { "$ref": "#/definitions/uri" },
             "disposition": { "$ref": "#/definitions/uri" },
@@ -233,16 +227,8 @@
               "minItems": 1
             },
             "parentID": { "$ref": "#/definitions/uri" },
-            "epcList": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/epc" },
-              "minItems": 1
-            },
-            "quantityList": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/quantityElement" },
-              "minItems": 1
-            },
+            "epcList": { "$ref": "#/definitions/epcList" },
+            "quantityList": { "$ref": "#/definitions/quantityList" },
             "action": { "$ref": "#/definitions/action" },
             "bizStep": { "$ref": "#/definitions/uri" },
             "disposition": { "$ref": "#/definitions/uri" },
@@ -275,26 +261,10 @@
               "type": "string",
               "pattern": "^TransformationEvent$"
             },
-            "inputEpcList": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/epc" },
-              "minItems": 1
-            },
-            "inputQuantityList": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/quantityElement" },
-              "minItems": 1
-            },
-            "outputEpcList": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/epc" },
-              "minItems": 1
-            },
-            "outputQuantityList": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/quantityElement" },
-              "minItems": 1
-            },
+            "inputEpcList": { "$ref": "#/definitions/epcList" },
+            "inputQuantityList": { "$ref": "#/definitions/quantityList" },
+            "outputEpcList": { "$ref": "#/definitions/epcList" },
+            "outputQuantityList": { "$ref": "#/definitions/quantityList" },
             "transformationID": { "$ref": "#/definitions/uri" },
             "bizStep": { "$ref": "#/definitions/uri" },
             "disposition": { "$ref": "#/definitions/uri" },
