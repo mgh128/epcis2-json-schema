@@ -2,31 +2,53 @@
   "$id": "https://id.gs1.org/epcis-schema.json",
   "type": "object",
   "definitions": {
-    "Time": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "EventID": {
-      "type": "string",
-      "format": "uri",
-      "pattern": "^urn:uuid:[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
-     },
-    "ErrorDeclaration": {
-      "type": "object",
-      "properties": {
-        "declarationTime": { "$ref": "#/definitions/Time" },
-        "reason": { "$ref": "#/definitions/Uri" },
-        "correctiveEventIds": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/EventID" }
-        }
-      }
-    },
-    "Uri": {
+    "uri": {
       "type": "string",
       "format": "uri"
     },
-    "epc": { "$ref": "#/definitions/Uri" },
+    "time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "decimal": {
+      "type":  "number"
+    },
+    "epcClass": {
+      "type": "string",
+      "format":  "uri",
+      "pattern": "^urn:epc:.*$"
+    },
+    "uom": {
+      "type": "string",
+      "pattern": "^[A-Z0-9]{2,3}$"
+    },
+    "eventId": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^urn:uuid:[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "quantityElement": {
+      "type": "object",
+      "properties": {
+        "epcClass": { "$ref": "#/definitions/epcClass" },
+        "quantity": { "$ref": "#/definitions/decimal" },
+        "uom": { "$ref": "#/definitions/uom" }
+      },
+      "required": [ "epcClass" ]
+    },
+    "errorDeclaration": {
+      "type": "object",
+      "properties": {
+        "declarationtime": { "$ref": "#/definitions/time" },
+        "reason": { "$ref": "#/definitions/uri" },
+        "correctiveeventIds": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/eventId" }
+        }
+      }
+    },
+
+    "epc": { "$ref": "#/definitions/uri" },
     "action": {
       "type": "string",
       "enum": [
@@ -42,21 +64,21 @@
     "event": {
       "type": "object",
       "properties": {
-        "eventTime": {
-          "title": "Event Time",
-          "description": "Time of when the Event took place.",
-          "$ref": "#/definitions/Time"
+        "eventtime": {
+          "title": "Event time",
+          "description": "time of when the Event took place.",
+          "$ref": "#/definitions/time"
         },
-        "recordTime": {
-          "title": "Record Time",
-          "description": "Time of when the Event was stored.",
-          "$ref": "#/definitions/Time" 
+        "recordtime": {
+          "title": "Record time",
+          "description": "time of when the Event was stored.",
+          "$ref": "#/definitions/time" 
         },
-        "eventTimeZoneOffset": {
+        "eventtimeZoneOffset": {
           "type": "string",
           "pattern": "^(\\+|\\-)((0[0-9]|1[0-3]):([0-5][0-9])|14:00)$"
         },
-        "eventId": { "$ref": "#/definitions/EventID" }
+        "eventId": { "$ref": "#/definitions/eventId" }
       }
     },
     "objectEvent": {
@@ -73,14 +95,15 @@
             },
             "action": { "$ref": "#/definitions/action" },
             "epcList": { "$ref": "#/definitions/epcList" },
-            "bizStep": { "$ref": "#/definitions/Uri" },
-            "disposition": { "$ref": "#/definitions/Uri" },
-            "readPoint": { "$ref": "#/definitions/Uri" },
-            "bizLocation": { "$ref": "#/definitions/Uri" }
-          },
-          "required": [
-            "epcList"
-          ]
+            "quantityList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/quantityElement" }
+            },
+            "bizStep": { "$ref": "#/definitions/uri" },
+            "disposition": { "$ref": "#/definitions/uri" },
+            "readPoint": { "$ref": "#/definitions/uri" },
+            "bizLocation": { "$ref": "#/definitions/uri" }
+          }
         }
       ]
     },
@@ -96,17 +119,14 @@
               "type": "string",
               "pattern": "^AggregationEvent$"
             },
-            "parentID": { "$ref": "#/definitions/Uri" },
+            "parentID": { "$ref": "#/definitions/uri" },
             "childEPCs": { "$ref": "#/definitions/epcList" },
             "action": { "$ref": "#/definitions/action" },
-            "bizStep": { "$ref": "#/definitions/Uri" },
-            "disposition": { "$ref": "#/definitions/Uri" },
-            "readPoint": { "$ref": "#/definitions/Uri" },
-            "bizLocation": { "$ref": "#/definitions/Uri" }
-          },
-          "required": [
-            "childEPCs"
-          ]
+            "bizStep": { "$ref": "#/definitions/uri" },
+            "disposition": { "$ref": "#/definitions/uri" },
+            "readPoint": { "$ref": "#/definitions/uri" },
+            "bizLocation": { "$ref": "#/definitions/uri" }
+          }
         }
       ]
     }

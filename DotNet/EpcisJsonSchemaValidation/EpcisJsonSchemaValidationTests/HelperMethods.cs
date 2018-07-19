@@ -21,5 +21,13 @@ namespace EpcisJsonSchemaValidationTests
         {
             schema = JSchema.Parse(File.ReadAllText($"json_schema.json"));
         }
+
+        public JObject GetJson(string className, string methodName)
+        {
+            string fileName = $"{className}/{methodName}.json";
+            JObject o = JObject.Parse(File.ReadAllText(fileName));
+
+            return o;
+        }
     }
 }
