@@ -1,0 +1,19 @@
+﻿{
+  "@context": "https://id.gs1.org/epcis-context.jsonld",
+  "id": "_:document1",
+  "isA": "EPCISDocument",
+  "schemaVersion": "2.0",
+  "created": "2005-07-11T11:30:47.0Z",
+  "format": "application/ld+json",
+  "epcisBody": {
+    "eventList": [
+      {
+        "id": "_:event1",
+        "isA": "ObjectEvent",
+        "action": "OBSERVE",
+        "epcList": [ "urn:epc:id:sgtin:0614141.107346.2017", "urn:epc:id:sgtin:0614141.107346.2018" ],
+        "eventTimeZoneOffset": "-06:00"
+      }
+    ]
+  }
+}

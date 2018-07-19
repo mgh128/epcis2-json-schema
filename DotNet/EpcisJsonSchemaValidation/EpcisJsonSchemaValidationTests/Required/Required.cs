@@ -31,5 +31,27 @@ namespace EpcisJsonSchemaValidationTests.Required
 
             Assert.False(valid, errorMessages.FirstOrDefault());
         }
+
+        [Fact]
+        public void FailEventTime()
+        {
+            var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
+
+            IList<string> errorMessages;
+            bool valid = json.IsValid(schema, out errorMessages);
+
+            Assert.False(valid, errorMessages.FirstOrDefault());
+        }
+
+        [Fact]
+        public void FailEventTimeZoneOffset()
+        {
+            var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
+
+            IList<string> errorMessages;
+            bool valid = json.IsValid(schema, out errorMessages);
+
+            Assert.False(valid, errorMessages.FirstOrDefault());
+        }
     }
 }

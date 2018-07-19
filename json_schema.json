@@ -13,10 +13,19 @@
     "decimal": {
       "type":  "number"
     },
+    "epc": { "$ref": "#/definitions/uri" },
     "epcClass": {
       "type": "string",
       "format":  "uri",
       "pattern": "^urn:epc:.*$"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "OBSERVE",
+        "ADD",
+        "DELETE"
+      ]
     },
     "uom": {
       "type": "string",
@@ -26,6 +35,17 @@
       "type": "string",
       "format": "uri",
       "pattern": "^urn:uuid:[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "errorDeclaration": {
+      "type": "object",
+      "properties": {
+        "declarationtime": { "$ref": "#/definitions/time" },
+        "reason": { "$ref": "#/definitions/uri" },
+        "correctiveeventIds": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/eventId" }
+        }
+      }
     },
     "quantityElement": {
       "type": "object",
@@ -44,50 +64,44 @@
       },
       "required": [ "bizTransaction" ]
     },
-    "errorDeclaration": {
+    "source": {
       "type": "object",
       "properties": {
-        "declarationtime": { "$ref": "#/definitions/time" },
-        "reason": { "$ref": "#/definitions/uri" },
-        "correctiveeventIds": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/eventId" }
-        }
+        "type": { "$ref": "#/definitions/uri" },
+        "source": { "$ref": "#/definitions/uri" }
       }
     },
-
-    "epc": { "$ref": "#/definitions/uri" },
-    "action": {
-      "type": "string",
-      "enum": [
-        "OBSERVE",
-        "ADD",
-        "DELETE"
-      ]
+    "destination": {
+      "type": "object",
+      "properties": {
+        "type": { "$ref": "#/definitions/uri" },
+        "destination": { "$ref": "#/definitions/uri" }
+      }
     },
-    "epcList": {
-      "type": "array",
-      "items": { "$ref": "#/definitions/epc" }
+    "ilmd": {
+      "type": "object"
     },
     "event": {
       "type": "object",
       "properties": {
-        "eventtime": {
+        "eventTime": {
           "title": "Event time",
           "description": "time of when the Event took place.",
           "$ref": "#/definitions/time"
         },
-        "recordtime": {
+        "recordTime": {
           "title": "Record time",
           "description": "time of when the Event was stored.",
           "$ref": "#/definitions/time" 
         },
-        "eventtimeZoneOffset": {
+        "eventTimeZoneOffset": {
           "type": "string",
           "pattern": "^(\\+|\\-)((0[0-9]|1[0-3]):([0-5][0-9])|14:00)$"
         },
-        "eventId": { "$ref": "#/definitions/eventId" }
-      }
+        "eventId": { "$ref": "#/definitions/eventId" },
+        "errorDeclaration": { "$ref": "#/definitions/errorDeclaration" }
+      },
+      "required": [ "eventTime", "eventTimeZoneOffset" ]
     },
     "objectEvent": {
       "allOf": [
@@ -101,7 +115,10 @@
               "type": "string",
               "pattern": "^ObjectEvent$"
             },
-            "epcList": { "$ref": "#/definitions/epcList" },
+            "epcList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/epc" }
+            },
             "quantityList": {
               "type": "array",
               "items": { "$ref": "#/definitions/quantityElement" }
@@ -114,8 +131,18 @@
             "bizTransactionList": {
               "type": "array",
               "items": { "$ref": "#/definitions/bizTransaction" }
-            }
-          }
+            },
+            "sourceList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/source" }
+            },
+            "destinationList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/destination" }
+            },
+            "ilmd": { "$ref": "#/definitions/ilmd" }
+          },
+          "required": [ "isA", "action" ]
         }
       ]
     },
@@ -132,13 +159,123 @@
               "pattern": "^AggregationEvent$"
             },
             "parentID": { "$ref": "#/definitions/uri" },
-            "childEPCs": { "$ref": "#/definitions/epcList" },
+            "childEPCs": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/epc" }
+            },
+            "childQuantityList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/quantityElement" }
+            },
             "action": { "$ref": "#/definitions/action" },
             "bizStep": { "$ref": "#/definitions/uri" },
             "disposition": { "$ref": "#/definitions/uri" },
             "readPoint": { "$ref": "#/definitions/uri" },
-            "bizLocation": { "$ref": "#/definitions/uri" }
-          }
+            "bizLocation": { "$ref": "#/definitions/uri" },
+            "bizTransactionList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/bizTransaction" }
+            },
+            "sourceList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/source" }
+            },
+            "destinationList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/destination" }
+            }
+          },
+          "required": [ "isA", "action" ]
+        }
+      ]
+    },
+    "transactionEvent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/event"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "isA": {
+              "type": "string",
+              "pattern": "^TransactionEvent$"
+            },
+            "bizTransactionList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/bizTransaction" }
+            },
+            "parentID": { "$ref": "#/definitions/uri" },
+            "epcList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/epc" }
+            },
+            "quantityList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/quantityElement" }
+            },
+            "action": { "$ref": "#/definitions/action" },
+            "bizStep": { "$ref": "#/definitions/uri" },
+            "disposition": { "$ref": "#/definitions/uri" },
+            "readPoint": { "$ref": "#/definitions/uri" },
+            "bizLocation": { "$ref": "#/definitions/uri" },
+            "sourceList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/source" }
+            },
+            "destinationList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/destination" }
+            }
+          },
+          "required": [ "isA", "bizTransactionList", "action" ]
+        }
+      ]
+    },
+    "transformationEvent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/event"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "isA": {
+              "type": "string",
+              "pattern": "^TransformationEvent$"
+            },
+            "inputEpcList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/epc" }
+            },
+            "inputQuantityList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/quantityElement" }
+            },
+            "outputEpcList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/epc" }
+            },
+            "outputQuantityList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/quantityElement" }
+            },
+            "transformationID": { "$ref": "#/definitions/uri" },
+            "bizStep": { "$ref": "#/definitions/uri" },
+            "disposition": { "$ref": "#/definitions/uri" },
+            "readPoint": { "$ref": "#/definitions/uri" },
+            "bizLocation": { "$ref": "#/definitions/uri" },
+            "sourceList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/source" }
+            },
+            "destinationList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/destination" }
+            },
+            "ilmd": { "$ref": "#/definitions/ilmd" }
+          },
+          "required": [ "isA" ]
         }
       ]
     }
@@ -174,6 +311,12 @@
               },
               {
                 "$ref": "#/definitions/aggregationEvent"
+              },
+              {
+                "$ref": "#/definitions/transactionEvent"
+              },
+              {
+                "$ref": "#/definitions/transformationEvent"
               }
             ]
           }

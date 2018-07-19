@@ -70,6 +70,26 @@
             "uom": "KGM"
           }
         ],
+        "sourceList": [
+          {
+            "type": "urn:epcglobal:cbv:sdt:possessing_party",
+            "source": "urn:epc:id:sgln:4012345.00001.0"
+          },
+          {
+            "type": "urn:epcglobal:cbv:sdt:location",
+            "source": "urn:epc:id:sgln:4012345.00225.0"
+          }
+        ],
+        "destinationList": [
+          {
+            "type": "urn:epcglobal:cbv:sdt:owning_party",
+            "destination": "urn:epc:id:sgln:0614141.00001.0"
+          },
+          {
+            "type": "urn:epcglobal:cbv:sdt:location",
+            "destination": "urn:epc:id:sgln:0614141.00777.0"
+          }
+        ],
         "example:myField": "Example of a vendor/user extension"
       }
     ]
