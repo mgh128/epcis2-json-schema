@@ -122,15 +122,18 @@
             "bizLocation": { "$ref": "#/definitions/uri" },
             "bizTransactionList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/bizTransaction" }
+              "items": { "$ref": "#/definitions/bizTransaction" },
+              "minItems": 1
             },
             "sourceList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/source" }
+              "items": { "$ref": "#/definitions/source" },
+              "minItems": 1
             },
             "destinationList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/destination" }
+              "items": { "$ref": "#/definitions/destination" },
+              "minItems": 1
             },
             "ilmd": { "$ref": "#/definitions/ilmd" }
           },
@@ -143,7 +146,8 @@
               "properties": {
                 "epcList": {
                   "type": "array",
-                  "items": { "$ref": "#/definitions/epc" }
+                  "items": { "$ref": "#/definitions/epc" },
+                  "minItems": 1
                 }
               },
               "required": [ "epcList" ]
@@ -153,7 +157,8 @@
               "properties": {
                 "quantityList": {
                   "type": "array",
-                  "items": { "$ref": "#/definitions/quantityElement" }
+                  "items": { "$ref": "#/definitions/quantityElement" },
+                  "minItems": 1
                 }
               },
               "required": [ "quantityList" ]
@@ -177,11 +182,13 @@
             "parentID": { "$ref": "#/definitions/uri" },
             "childEPCs": {
               "type": "array",
-              "items": { "$ref": "#/definitions/epc" }
+              "items": { "$ref": "#/definitions/epc" },
+              "minItems": 1
             },
             "childQuantityList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/quantityElement" }
+              "items": { "$ref": "#/definitions/quantityElement" },
+              "minItems": 1
             },
             "action": { "$ref": "#/definitions/action" },
             "bizStep": { "$ref": "#/definitions/uri" },
@@ -190,15 +197,18 @@
             "bizLocation": { "$ref": "#/definitions/uri" },
             "bizTransactionList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/bizTransaction" }
+              "items": { "$ref": "#/definitions/bizTransaction" },
+              "minItems": 1
             },
             "sourceList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/source" }
+              "items": { "$ref": "#/definitions/source" },
+              "minItems": 1
             },
             "destinationList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/destination" }
+              "items": { "$ref": "#/definitions/destination" },
+              "minItems": 1
             }
           },
           "required": [ "isA", "action" ]
@@ -219,16 +229,19 @@
             },
             "bizTransactionList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/bizTransaction" }
+              "items": { "$ref": "#/definitions/bizTransaction" },
+              "minItems": 1
             },
             "parentID": { "$ref": "#/definitions/uri" },
             "epcList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/epc" }
+              "items": { "$ref": "#/definitions/epc" },
+              "minItems": 1
             },
             "quantityList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/quantityElement" }
+              "items": { "$ref": "#/definitions/quantityElement" },
+              "minItems": 1
             },
             "action": { "$ref": "#/definitions/action" },
             "bizStep": { "$ref": "#/definitions/uri" },
@@ -237,11 +250,13 @@
             "bizLocation": { "$ref": "#/definitions/uri" },
             "sourceList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/source" }
+              "items": { "$ref": "#/definitions/source" },
+              "minItems": 1
             },
             "destinationList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/destination" }
+              "items": { "$ref": "#/definitions/destination" },
+              "minItems": 1
             }
           },
           "required": [ "isA", "bizTransactionList", "action" ]
@@ -262,19 +277,23 @@
             },
             "inputEpcList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/epc" }
+              "items": { "$ref": "#/definitions/epc" },
+              "minItems": 1
             },
             "inputQuantityList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/quantityElement" }
+              "items": { "$ref": "#/definitions/quantityElement" },
+              "minItems": 1
             },
             "outputEpcList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/epc" }
+              "items": { "$ref": "#/definitions/epc" },
+              "minItems": 1
             },
             "outputQuantityList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/quantityElement" }
+              "items": { "$ref": "#/definitions/quantityElement" },
+              "minItems": 1
             },
             "transformationID": { "$ref": "#/definitions/uri" },
             "bizStep": { "$ref": "#/definitions/uri" },
@@ -283,11 +302,13 @@
             "bizLocation": { "$ref": "#/definitions/uri" },
             "sourceList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/source" }
+              "items": { "$ref": "#/definitions/source" },
+              "minItems": 1
             },
             "destinationList": {
               "type": "array",
-              "items": { "$ref": "#/definitions/destination" }
+              "items": { "$ref": "#/definitions/destination" },
+              "minItems": 1
             },
             "ilmd": { "$ref": "#/definitions/ilmd" }
           },
