@@ -13,7 +13,10 @@
     "decimal": {
       "type":  "number"
     },
-    "epc": { "$ref": "#/definitions/uri" },
+    "epc": {
+      "type": "string",
+      "pattern": "^urn:epc:id:.*$"
+    },
     "epcClass": {
       "type": "string",
       "format":  "uri",
@@ -326,9 +329,12 @@
                 "$ref": "#/definitions/transformationEvent"
               }
             ]
-          }
+          },
+          "minItems":  1
         }
-      }
+      },
+      "required": [ "eventList" ]
     }
-  }
+  },
+  "required": [ "schemaVersion" ]
 }
