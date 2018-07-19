@@ -13,8 +13,8 @@
         "action": "OBSERVE",
         "quantityList": [
           {
-            "epcClass": "abc",
-            "quantity": "200",
+            "epcClass": "https://example.com/path/resource.txt#fragment",
+            "quantity": 200,
             "uom": "KGM"
           }
         ],

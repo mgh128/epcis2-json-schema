@@ -36,6 +36,14 @@
       },
       "required": [ "epcClass" ]
     },
+    "bizTransaction": {
+      "type": "object",
+      "properties": {
+        "type": { "$ref": "#/definitions/uri" },
+        "bizTransaction": { "$ref": "#/definitions/uri" }
+      },
+      "required": [ "bizTransaction" ]
+    },
     "errorDeclaration": {
       "type": "object",
       "properties": {
@@ -93,16 +101,20 @@
               "type": "string",
               "pattern": "^ObjectEvent$"
             },
-            "action": { "$ref": "#/definitions/action" },
             "epcList": { "$ref": "#/definitions/epcList" },
             "quantityList": {
               "type": "array",
               "items": { "$ref": "#/definitions/quantityElement" }
             },
+            "action": { "$ref": "#/definitions/action" },
             "bizStep": { "$ref": "#/definitions/uri" },
             "disposition": { "$ref": "#/definitions/uri" },
             "readPoint": { "$ref": "#/definitions/uri" },
-            "bizLocation": { "$ref": "#/definitions/uri" }
+            "bizLocation": { "$ref": "#/definitions/uri" },
+            "bizTransactionList": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/bizTransaction" }
+            }
           }
         }
       ]

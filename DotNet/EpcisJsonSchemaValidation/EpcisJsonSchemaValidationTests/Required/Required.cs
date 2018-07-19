@@ -6,12 +6,12 @@ using Newtonsoft.Json.Schema;
 
 using Xunit;
 
-namespace EpcisJsonSchemaValidationTests.Patterns
+namespace EpcisJsonSchemaValidationTests.Required
 {
-    public class Patterns : HelperMethods
+    public class Required : HelperMethods
     {
         [Fact]
-        public void QuantityElementPass()
+        public void BusinessTransactionPass()
         {
             var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
 
@@ -22,18 +22,7 @@ namespace EpcisJsonSchemaValidationTests.Patterns
         }
 
         [Fact]
-        public void QuantityElementFailEpcClass()
-        {
-            var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
-
-            IList<string> errorMessages;
-            bool valid = json.IsValid(schema, out errorMessages);
-
-            Assert.False(valid, errorMessages.FirstOrDefault());
-        }
-
-        [Fact]
-        public void QuantityElementFailUom()
+        public void BusinessTransactionFailBizTransaction()
         {
             var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
 

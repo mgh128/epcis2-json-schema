@@ -24,6 +24,7 @@
   <ItemGroup>
     <Folder Include="ShouldValidate\" />
     <Folder Include="Patterns\" />
+    <Folder Include="Required\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="ShouldValidate\Test1.json">
@@ -48,6 +49,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Patterns\QuantityElementFailUom.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Required\BusinessTransactionPass.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Required\BusinessTransactionFailBizTransaction.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
