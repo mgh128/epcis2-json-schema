@@ -493,7 +493,8 @@
       "type": "string"
     },
     "isA": {
-      "type": "string"
+      "type": "string",
+      "pattern":  "^EPCISDocument$"
     },
     "schemaVersion": {
       "type": "number"
