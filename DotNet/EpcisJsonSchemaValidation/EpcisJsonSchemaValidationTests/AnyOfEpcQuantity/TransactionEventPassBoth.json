@@ -9,17 +9,30 @@
     "eventList": [
       {
         "id": "_:event1",
-        "isA": "ObjectEvent",
+        "isA": "TransactionEvent",
         "action": "OBSERVE",
-        "bizStep": "urn:epcglobal:cbv:bizstep:shipping",
-        "disposition": "urn:epcglobal:cbv:disp:in_transit",
         "epcList": [ "urn:epc:id:sgtin:0614141.107346.2017", "urn:epc:id:sgtin:0614141.107346.2018" ],
+        "quantityList": [
+          {
+            "epcClass": "urn:epc:class:lgtin:4012345.011111.4444",
+            "quantity": 10,
+            "uom": "KGM"
+          },
+          {
+            "epcClass": "urn:epc:class:lgtin:0614141.077777.987",
+            "quantity": 30
+          },
+          {
+            "epcClass": "urn:epc:idpat:sgtin:4012345.066666.*",
+            "quantity": 220
+          }
+        ],
         "eventTime": "2005-04-03T20:33:31.116000-06:00",
         "eventTimeZoneOffset": "-06:00",
-        "readPoint": "urn:epc:id:sgln:0614141.07346.1234",
         "bizTransactionList": [
           {
-            "type": "urn:epcglobal:cbv:btt:po"
+            "type": "urn:epcglobal:cbv:btt:po",
+            "bizTransaction": "http://transaction.acme.com/po/12345678"
           }
         ]
       }

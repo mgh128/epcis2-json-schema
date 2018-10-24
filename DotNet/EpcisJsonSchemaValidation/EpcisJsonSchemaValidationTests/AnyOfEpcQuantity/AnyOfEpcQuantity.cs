@@ -15,8 +15,7 @@ namespace EpcisJsonSchemaValidationTests.AnyOfEpcQuantity
         {
             var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
 
-            IList<string> errorMessages;
-            bool valid = json.IsValid(schema, out errorMessages);
+            bool valid = json.IsValid(schema, out IList<string> errorMessages);
 
             Assert.True(valid, errorMessages.FirstOrDefault());
         }
@@ -26,8 +25,7 @@ namespace EpcisJsonSchemaValidationTests.AnyOfEpcQuantity
         {
             var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
 
-            IList<string> errorMessages;
-            bool valid = json.IsValid(schema, out errorMessages);
+            bool valid = json.IsValid(schema, out IList<string> errorMessages);
 
             Assert.True(valid, errorMessages.FirstOrDefault());
         }
@@ -37,8 +35,7 @@ namespace EpcisJsonSchemaValidationTests.AnyOfEpcQuantity
         {
             var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
 
-            IList<string> errorMessages;
-            bool valid = json.IsValid(schema, out errorMessages);
+            bool valid = json.IsValid(schema, out IList<string> errorMessages);
 
             Assert.True(valid, errorMessages.FirstOrDefault());
         }
@@ -48,10 +45,89 @@ namespace EpcisJsonSchemaValidationTests.AnyOfEpcQuantity
         {
             var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
 
-            IList<string> errorMessages;
-            bool valid = json.IsValid(schema, out errorMessages);
+            bool valid = json.IsValid(schema, out IList<string> errorMessages);
 
             Assert.False(valid, errorMessages.FirstOrDefault());
+        }
+
+        [Fact]
+        public void ObjectEventFailQuantityListButNoEpcList()
+        {
+            var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
+
+            bool valid = json.IsValid(schema, out IList<string> errorMessages);
+
+            Assert.False(valid, errorMessages.FirstOrDefault());
+        }
+
+        [Fact]
+        public void TransactionEventFailNone()
+        {
+            var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
+
+            bool valid = json.IsValid(schema, out IList<string> errorMessages);
+
+            Assert.False(valid, errorMessages.FirstOrDefault());
+        }
+
+        [Fact]
+        public void TransactionEventFailNoneButActionDeleteWithoutEpcList()
+        {
+            var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
+
+            bool valid = json.IsValid(schema, out IList<string> errorMessages);
+
+            Assert.False(valid, errorMessages.FirstOrDefault());
+        }
+
+        [Fact]
+        public void TransactionEventFailQuantityListButNoEpcList()
+        {
+            var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
+
+            bool valid = json.IsValid(schema, out IList<string> errorMessages);
+
+            Assert.False(valid, errorMessages.FirstOrDefault());
+        }
+
+        [Fact]
+        public void TransactionEventPassBoth()
+        {
+            var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
+
+            bool valid = json.IsValid(schema, out IList<string> errorMessages);
+
+            Assert.True(valid, errorMessages.FirstOrDefault());
+        }
+
+        [Fact]
+        public void TransactionEventPassEpcList()
+        {
+            var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
+
+            bool valid = json.IsValid(schema, out IList<string> errorMessages);
+
+            Assert.True(valid, errorMessages.FirstOrDefault());
+        }
+
+        [Fact]
+        public void TransactionEventPassNoneButActionDelete()
+        {
+            var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
+
+            bool valid = json.IsValid(schema, out IList<string> errorMessages);
+
+            Assert.True(valid, errorMessages.FirstOrDefault());
+        }
+
+        [Fact]
+        public void TransactionEventPassQuantityList()
+        {
+            var json = GetJson(GetType().Name, MethodBase.GetCurrentMethod().Name);
+
+            bool valid = json.IsValid(schema, out IList<string> errorMessages);
+
+            Assert.True(valid, errorMessages.FirstOrDefault());
         }
     }
 }

@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Patterns\QuantityElementFailEpcClass.json" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="..\..\..\json_schema.json">
       <Link>json_schema.json</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -41,9 +44,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Patterns\QuantityElementPass.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Patterns\QuantityElementFailEpcClass.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Patterns\QuantityElementFailUom.json">
@@ -74,6 +74,33 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="ShouldValidate\Test1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AnyOfEpcQuantity\ObjectEventFailQuantityListButNoEpcList.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AnyOfEpcQuantity\TransactionEventFailNone.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AnyOfEpcQuantity\TransactionEventFailQuantityListButNoEpcList.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AnyOfEpcQuantity\TransactionEventPassBoth.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AnyOfEpcQuantity\TransactionEventPassEpcList.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AnyOfEpcQuantity\TransactionEventPassQuantityList.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AnyOfEpcQuantity\TransactionEventPassNoneButActionDelete.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AnyOfEpcQuantity\TransactionEventFailNoneButActionDeleleWithoutEpcList.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="AnyOfEpcQuantity\TransactionEventFailNoneButActionDeleteWithoutEpcList.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

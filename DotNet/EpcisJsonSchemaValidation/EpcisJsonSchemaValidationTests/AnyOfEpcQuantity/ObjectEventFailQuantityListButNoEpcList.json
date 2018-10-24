@@ -11,7 +11,21 @@
         "id": "_:event1",
         "isA": "ObjectEvent",
         "action": "OBSERVE",
-        "epcList": [ "urn:epc:id:sgtin:0614141.107346.2017", "urn:epc:id:sgtin:0614141.107346.2018" ],
+        "quantityList": [
+          {
+            "epcClass": "urn:epc:class:lgtin:4012345.011111.4444",
+            "quantity": 10,
+            "uom": "KGM"
+          },
+          {
+            "epcClass": "urn:epc:class:lgtin:0614141.077777.987",
+            "quantity": 30
+          },
+          {
+            "epcClass": "urn:epc:idpat:sgtin:4012345.066666.*",
+            "quantity": 220
+          }
+        ],
         "eventTime": "2005-04-03T20:33:31.116000-06:00",
         "eventTimeZoneOffset": "-06:00",
       }

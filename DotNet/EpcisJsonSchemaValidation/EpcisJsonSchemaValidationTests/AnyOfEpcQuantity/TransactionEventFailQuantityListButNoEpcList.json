@@ -9,9 +9,8 @@
     "eventList": [
       {
         "id": "_:event1",
-        "isA": "ObjectEvent",
+        "isA": "TransactionEvent",
         "action": "OBSERVE",
-        "epcList": [],
         "quantityList": [
           {
             "epcClass": "urn:epc:class:lgtin:4012345.011111.4444",
@@ -29,6 +28,12 @@
         ],
         "eventTime": "2005-04-03T20:33:31.116000-06:00",
         "eventTimeZoneOffset": "-06:00",
+        "bizTransactionList": [
+          {
+            "type": "urn:epcglobal:cbv:btt:po",
+            "bizTransaction": "http://transaction.acme.com/po/12345678"
+          }
+        ]
       }
     ]
   }
