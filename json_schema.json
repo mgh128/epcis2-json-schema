@@ -506,7 +506,7 @@
     "format": {
       "type": "string"
     },
-    "ecpisHeader" : {
+    "epcisHeader" : {
       "type": "object",
       "properties": {
         "epcisMasterData": {
