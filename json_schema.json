@@ -495,9 +495,9 @@
       "pattern":  "^EPCISDocument$"
     },
     "schemaVersion": {
-      "type": "number"
+      "type": "string"
     },
-    "creationDate": {
+    "created": {
       "type": "string",
       "format": "date-time"
     },
@@ -548,5 +548,5 @@
       "required": [ "eventList" ]
     }
   },
-  "required": [ "schemaVersion", "creationDate", "epcisBody" ]
+  "required": [ "schemaVersion", "created", "epcisBody" ]
 }
