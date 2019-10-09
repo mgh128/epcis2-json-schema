@@ -489,9 +489,7 @@
     }
   },
   "properties": {
-    "@context": {
-      "type": "string"
-    },
+    "@context": {"anyOf":[{"type":"string","format": "uri"},{"type":"object"}]} ,
     "isA": {
       "type": "string",
       "pattern":  "^EPCISDocument$"
